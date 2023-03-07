@@ -4,7 +4,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/material';
+import { makeStyles } from '@material-ui/core/styles';
+import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles({
     bloggContent: {
@@ -12,52 +13,68 @@ const useStyles = makeStyles({
     },
     writerLabel:{
         position:"absolute",
-        bottom: 0,
-        right: 0
+        bottom: -30,
+        right: 0,
+        padding:5,
+        color:"#36454f",
+        letterSpacing: "0.02857em",
+        fontWeight: "500",
+        fontSize: "0.8125rem",
+        lineHeight: 1.75
+
     },
     readMore:{
-        position:"absolute",
-        bottom: 0,
-        left: 0
+     
     },
     dateDisplay:{
         position:"absolute",
-        bottom: 5,
-        right: 0
+        bottom: -50,
+        right: 0,
+        padding:5,
+        color:"#36454f",
+        letterSpacing: "0.02857em",
+        fontWeight: "500",
+        fontSize: "0.8125rem",
+        fontFamily: "'Roboto','Helvetica','Arial','sans-serif'"
     }
 
   });
 
 export default function Blog() {
-   const classes = useStyles()
+  const[blogs,setBlogs] = useState();
+  useEffect(()=>{
+    fetch("http://localhost:8080/blog/find-blogs")
+    .then(res=>res.json())
+    .then((result)=>{
+     setBlogs(result)
+    }
+    )
+  },[])
+   const classes = useStyles();
   return (
     //sx={{ maxWidth: 500 }
-    <Card>
+    blogs.map((blog,key)=>{
+      return <Card>
       <CardContent className={classes.bloggContent}>
         <Typography gutterBottom variant="h5" component="div">
-         ChatGPT and its implications
+        {(blog.title)}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarcticaranging across all continents except Antarctica
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+         {(blog.content)}
           <div className={classes.writerLabel}>
-            <h4>John Doe</h4>
+            <h4>John Developer</h4>
           </div>
           <div className={classes.dateDisplay}>
-            <h4>10-10-2020</h4>
+            <h4 key={key}>{(blog.date)}</h4>
           </div>
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" className={classes.readMore}>Read More</Button>
+      <CardActions  className={classes.readMore}>
+        <Button size="small">Read More</Button>
       </CardActions>
     </Card>
+    })
+    
     
   );
 }
