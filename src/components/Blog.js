@@ -39,42 +39,27 @@ const useStyles = makeStyles({
     }
 
   });
-
-export default function Blog() {
-  const[blogs,setBlogs] = useState();
-  useEffect(()=>{
-    fetch("http://localhost:8080/blog/find-blogs")
-    .then(res=>res.json())
-    .then((result)=>{
-     setBlogs(result)
-    }
-    )
-  },[])
-   const classes = useStyles();
+export default function Blog({blog}) {
+  
+  const classes = useStyles();
+  
   return (
-    //sx={{ maxWidth: 500 }
-    blogs.map((blog,key)=>{
-      return <Card>
+     <Card>
       <CardContent className={classes.bloggContent}>
         <Typography gutterBottom variant="h5" component="div">
-        {(blog.title)}
+        {blog.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-         {(blog.content)}
-          <div className={classes.writerLabel}>
-            <h4>John Developer</h4>
-          </div>
-          <div className={classes.dateDisplay}>
-            <h4 key={key}>{(blog.date)}</h4>
-          </div>
-        </Typography>
+         {blog.content}
+        <p className={classes.writerLabel}>John Developer</p>
+        <p className={classes.dateDisplay}>June 2020</p>
+      
+      </Typography>
       </CardContent>
       <CardActions  className={classes.readMore}>
-        <Button size="small">Read More</Button>
+      <Button size="small">Read More</Button>
       </CardActions>
     </Card>
-    })
-    
     
   );
 }
