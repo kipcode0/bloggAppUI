@@ -36,30 +36,39 @@ const useStyles = makeStyles({
         fontWeight: "500",
         fontSize: "0.8125rem",
         fontFamily: "'Roboto','Helvetica','Arial','sans-serif'"
+    },
+    readMoreDisplay:{
+      flex: "0 0 100%"
     }
 
   });
+
 export default function Blog({blog}) {
   
   const classes = useStyles();
+  const[isreadMore,handleReadMore] = useState(false);
+  const handleClick = () => {
+    isreadMore=true;
+  }
   
   return (
      <Card>
       <CardContent className={classes.bloggContent}>
         <Typography gutterBottom variant="h5" component="div">
-        {blog.title}
+        {blog.title} 
         </Typography>
         <Typography variant="body2" color="text.secondary">
-         {blog.content}
-        <p className={classes.writerLabel}>John Developer</p>
-        <p className={classes.dateDisplay}>June 2020</p>
+         {blog.content} 
+        <p className={classes.writerLabel}>{blog.writer}</p>
+        <p className={classes.dateDisplay}>{blog.date}</p>
       
       </Typography>
       </CardContent>
       <CardActions  className={classes.readMore}>
-      <Button size="small">Read More</Button>
+      <Button onClick={handleClick}size="small">Read More</Button>
       </CardActions>
     </Card>
     
   );
+  
 }

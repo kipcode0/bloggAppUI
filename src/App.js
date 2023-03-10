@@ -5,6 +5,7 @@ import Blog from './components/Blog'
 import Grid from '@mui/material/Grid';
 import {makeStyles} from '@material-ui/core/styles'
 import BottomNav from './components/BottomNav';
+import data from './data.json'
 import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles({
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
 });
 
 function App() {
+  /*
   const[blogs,setBlogs] = useState();
 
   useEffect(()=>{
@@ -27,19 +29,38 @@ function App() {
      }
     )
   },[]);
+  */
+  const idd = 3;
+  const display= true;
+  
+  let blogToRead = {
+    "title": "Machine Learning",
+    "genre": "Technology",
+    "writer": "Luther King",
+    "content": "Sed adipiscing diam donec adipiscing tristique. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Volutpat consequat mauris nunc congue nisi vitae suscipit. Sit amet mauris commodo quis imperdiet. A erat nam at lectus. Tincidunt augue interdum velit euismod in pellentesque. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Arcu ac tortor dignissim convallis aenean. Lectus magna fringilla urna porttitor rhoncus dolor. Tristique magna sit amet purus gravida quis. Dictum at tempor commodo ullamcorper a lacus vestibulum sed. Egestas erat imperdiet sed euismod nisi porta lorem mollis. Scelerisque eu ultrices vitae auctor eu augue ut. Ut morbi tincidunt augue interdum. Diam sollicitudin tempor id eu nisl. Id volutpat lacus laoreet non curabitur. Mauris a diam maecenas sed enim ut sem viverra. In hac habitasse platea dictumst quisque sagittis purus sit.",
+    "date": "04-17-2030",
+    "id": 6
+  }
+
+  console.log(blogToRead.title);
   const classes = useStyles()
   return (
     <div className="App">
      <Appbar/>
      <Grid container spacing={0.5}  className={classes.gridContainer}>
-     {blogs && blogs.map((blog)=>{
-       return (
-      // <Info name={e.name} rollNo={e.rollNo}/>
-      <Grid item xs={12} sm={6} md={4}>
+      {display===true && data.map((blog)=>{
+         return <Grid item xs={12} sm={6} md={4}>
           <Blog key={blog.id} blog={blog}/>
       </Grid>
-     );})}
+     })}
+     {display===false && <Grid item xs={12} sm={12} md={12}>
+          <Blog key={idd} blog={blogToRead}/>
+      </Grid>}
+     
+     
+     
      </Grid>
+     
      <BottomNav/>
     </div>
   );
