@@ -53,16 +53,19 @@ function App() {
           <Blog key={blog.id} blog={blog}/>
       </Grid>
      })}
-     {display===false && <Grid item xs={12} sm={12} md={12}>
-          <Blog key={idd} blog={blogToRead}/>
-      </Grid>}
      
+
+     {display===false && <Grid item xs={12} sm={12} md={12}>
+         <Blog key={idd} blog={blogToRead}/>
+      </Grid>}
+
      
      
      </Grid>
-     
      <BottomNav/>
+     
     </div>
+    
   );
 }
 

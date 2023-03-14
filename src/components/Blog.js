@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles({
     bloggContent: {
-        position: "relative"
+        position: "relative",
     },
     writerLabel:{
         position:"absolute",
@@ -36,6 +36,16 @@ const useStyles = makeStyles({
         fontWeight: "500",
         fontSize: "0.8125rem",
         fontFamily: "'Roboto','Helvetica','Arial','sans-serif'"
+    },
+    fullscreen:{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      overflow: "auto",
+      background: "rgb(143, 168, 143)" /* Just to visualize the extent */
+      
     },
     readMoreDisplay:{
       flex: "0 0 100%"
