@@ -32,7 +32,7 @@ function App() {
   */
   const idd = 3;
   const display= true;
-  
+  const[readMoreBlogContent, setReadMore] = useState(false);
   let blogToRead = {
     "title": "Machine Learning",
     "genre": "Technology",
@@ -41,21 +41,28 @@ function App() {
     "date": "04-17-2030",
     "id": 6
   }
-
-  console.log(blogToRead.title);
+  
+  
+  const readMoreContent = (readMore) =>{
+    setReadMore(readMore);
+  }
+  
+  
+  console.log(readMoreBlogContent);
   const classes = useStyles()
+  
   return (
     <div className="App">
      <Appbar/>
      <Grid container spacing={0.5}  className={classes.gridContainer}>
-      {display===true && data.map((blog)=>{
+      {readMoreBlogContent===false && data.map((blog)=>{
          return <Grid item xs={12} sm={6} md={4}>
-          <Blog key={blog.id} blog={blog}/>
+          <Blog key={blog.id} blog={blog} onReadMore={readMoreContent}/>
       </Grid>
      })}
      
 
-     {display===false && <Grid item xs={12} sm={12} md={12}>
+     {readMoreBlogContent===true && <Grid item xs={12} sm={12} md={12}>
          <Blog key={idd} blog={blogToRead}/>
       </Grid>}
 

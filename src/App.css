@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background:rgb(234, 231, 239);
+  background-color:rgb(234, 231, 239);
 }
 
 .App-header {
@@ -10,16 +10,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-.fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: auto;
-  background: rgb(143, 168, 143); /* Just to visualize the extent */
-  
 }
 
 

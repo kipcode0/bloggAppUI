@@ -3,6 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import { Link } from 'react-router-dom';
+
 import {makeStyles} from '@material-ui/core/styles'
 import { sizing } from '@mui/system';
 import { Paper } from '@mui/material';
@@ -34,9 +35,10 @@ export default function BottomNav() {
         }}
       >
         <BottomNavigationAction label="Refresh" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="LinkedIn" icon={< LinkedInIcon />} />
-        <BottomNavigationAction label="Twitter" icon={<TwitterIcon />}  />
         <BottomNavigationAction label="Andrew Kipkoech" icon={<CopyrightIcon />}  />
+        <BottomNavigationAction href="https://www.linkedin.com/in/andrew-kipkoech-994459130/"label="LinkedIn" icon={< LinkedInIcon />} />
+        <BottomNavigationAction href="https://twitter.com/AndrewKoechie"label="Twitter" icon={<TwitterIcon />} />
+        
 
       </BottomNavigation>
     </Box>

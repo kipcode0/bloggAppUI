@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
+import { letterSpacing } from '@mui/system';
 
 const useStyles = makeStyles({
     bloggContent: {
@@ -53,13 +54,13 @@ const useStyles = makeStyles({
 
   });
 
-export default function Blog({blog}) {
-  
-  const classes = useStyles();
-  const[isreadMore,handleReadMore] = useState(false);
+export default function Blog({blog,onReadMore}) {
+  const [readMore,setReadMore] = useState(false);
   const handleClick = () => {
-    isreadMore=true;
+    setReadMore(true);
+    onReadMore(readMore);
   }
+  const classes = useStyles();
   
   return (
      <Card>
