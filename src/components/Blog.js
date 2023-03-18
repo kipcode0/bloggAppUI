@@ -54,11 +54,12 @@ const useStyles = makeStyles({
 
   });
 
+  
 export default function Blog({blog,onReadMore}) {
   const [readMore,setReadMore] = useState(false);
-  const handleClick = () => {
+  const handleClick = (e, data) => {
     setReadMore(true);
-    onReadMore(readMore);
+    onReadMore(readMore,data);
   }
   const classes = useStyles();
   
@@ -76,7 +77,9 @@ export default function Blog({blog,onReadMore}) {
       </Typography>
       </CardContent>
       <CardActions  className={classes.readMore}>
-      <Button onClick={handleClick}size="small">Read More</Button>
+      <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">
+      {readMore ? "Read Less" : " Read More" }
+      </Button>
       </CardActions>
     </Card>
     

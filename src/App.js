@@ -30,9 +30,11 @@ function App() {
     )
   },[]);
   */
-  const idd = 3;
+  const idd = 10;
   const display= true;
-  const[readMoreBlogContent, setReadMore] = useState(false);
+  const [readMoreBlogContent, setReadMore] = useState(false);
+  const [blogToRead,setBlogToRead] = useState(null);
+  /*
   let blogToRead = {
     "title": "Machine Learning",
     "genre": "Technology",
@@ -41,14 +43,16 @@ function App() {
     "date": "04-17-2030",
     "id": 6
   }
+  */
   
-  
-  const readMoreContent = (readMore) =>{
+  const readMoreContent = (readMore,data) =>{
     setReadMore(readMore);
+    setBlogToRead(data);
   }
   
-  
-  console.log(readMoreBlogContent);
+  let activeBlog = data.find(blog => blog.id ===idd);
+  //console.log(activeBlog);
+  //console.log(readMoreBlogContent);
   const classes = useStyles()
   
   return (

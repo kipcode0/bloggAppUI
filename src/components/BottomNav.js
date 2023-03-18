@@ -27,6 +27,7 @@ export default function BottomNav() {
   return (
     <Box>
       <BottomNavigation
+        position="static"
         className={classes.bottomNav}
         showLabels
         value={value}
