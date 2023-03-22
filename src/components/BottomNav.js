@@ -26,7 +26,7 @@ export default function BottomNav() {
   const classes = useStyles()
   return (
     <Box>
-      <BottomNavigation
+      <BottomNavigation  
         position="static"
         className={classes.bottomNav}
         showLabels

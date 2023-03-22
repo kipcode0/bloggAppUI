@@ -25,7 +25,9 @@ const useStyles = makeStyles({
 
     },
     readMore:{
-     
+      position: "relative",
+      bottom: 10,
+      right: 0,
     },
     dateDisplay:{
         position:"absolute",
@@ -45,7 +47,7 @@ const useStyles = makeStyles({
       bottom: 0,
       right: 0,
       overflow: "auto",
-      background: "rgb(143, 168, 143)" /* Just to visualize the extent */
+      background: "inherit" /* Just to visualize the extent */
       
     },
     readMoreDisplay:{
@@ -55,17 +57,37 @@ const useStyles = makeStyles({
   });
 
   
-export default function Blog({blog,onReadMore}) {
+export default function Blog({blog,onReadMore,readingMore}) {
   const [readMore,setReadMore] = useState(false);
   const handleClick = (e, data) => {
-    setReadMore(true);
+    setReadMore(prev => !prev);
     onReadMore(readMore,data);
   }
   const classes = useStyles();
-  
-  return (
-     <Card>
+  function conditionalRenderBlog(){
+    if(readingMore===false){
+      return <Card>
       <CardContent className={classes.bloggContent}>
+        <Typography gutterBottom variant="h5" component="div">
+        {blog.title} 
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+         {blog.content.slice(0,600)} 
+        <p className={classes.writerLabel}>{blog.writer}</p>
+        <p className={classes.dateDisplay}>{blog.date}</p>
+      
+      </Typography>
+      </CardContent>
+      <CardActions>
+      <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">
+       Read More
+      </Button>
+      </CardActions>
+     </Card>
+    }else{
+      //className={`${this.props.classes.container} ${this.props.classes.spacious}`
+      return <Card>
+      <CardContent className={`${classes.bloggContent} `}>
         <Typography gutterBottom variant="h5" component="div">
         {blog.title} 
         </Typography>
@@ -76,12 +98,18 @@ export default function Blog({blog,onReadMore}) {
       
       </Typography>
       </CardContent>
-      <CardActions  className={classes.readMore}>
+      <CardActions>
       <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">
-      {readMore ? "Read Less" : " Read More" }
+       Read Less
       </Button>
       </CardActions>
-    </Card>
+     </Card>
+    }
+  }
+  return (
+    <div>
+      {conditionalRenderBlog()}
+    </div>
     
   );
   
