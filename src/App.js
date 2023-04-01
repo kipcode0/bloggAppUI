@@ -41,6 +41,7 @@ function App() {
     setBlogToRead(data);
   }
   
+ 
   let activeBlog = data.find(blog => blog.id ===idd);
   
   const classes = useStyles()
@@ -55,13 +56,10 @@ function App() {
       </Grid>
      })}
      
-
      {readMoreBlogContent===true && <Grid item xs={12} sm={12} md={12}>
          <Blog key={idd} blog={blogToRead} readingMore={readMoreBlogContent}/>
       </Grid>}
 
-     
-     
      </Grid>
      <BottomNav/>
      

@@ -59,10 +59,15 @@ const useStyles = makeStyles({
   
 export default function Blog({blog,onReadMore,readingMore}) {
   const [readMore,setReadMore] = useState(false);
-  const handleClick = (e, data) => {
+  
+  useEffect(() => {
     setReadMore(prev => !prev);
+  },[]);
+
+  const handleClick = (e,data) => {
     onReadMore(readMore,data);
   }
+  
   const classes = useStyles();
   function conditionalRenderBlog(){
     if(readingMore===false){
@@ -99,8 +104,8 @@ export default function Blog({blog,onReadMore,readingMore}) {
       </Typography>
       </CardContent>
       <CardActions>
-      <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">
-       Read Less
+      <Button  value={blog.id} onClick={((e) => handleClick(e,blog))}  size="small">
+       Go Back
       </Button>
       </CardActions>
      </Card>
