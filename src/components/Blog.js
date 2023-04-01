@@ -11,6 +11,11 @@ import { letterSpacing } from '@mui/system';
 const useStyles = makeStyles({
     bloggContent: {
         position: "relative",
+       
+    },
+    cardDisplay:{
+      marginBottom: '50px',
+      backgroundColor: "blue"
     },
     writerLabel:{
         position:"absolute",
@@ -64,7 +69,12 @@ export default function Blog({blog,onReadMore,readingMore}) {
     setReadMore(prev => !prev);
   },[]);
 
+  const updateReadStatus = ()=>{
+    setReadMore(prev => !prev);
+  }
   const handleClick = (e,data) => {
+    console.log(readMore);
+    console.log(data);
     onReadMore(readMore,data);
   }
   
@@ -89,26 +99,21 @@ export default function Blog({blog,onReadMore,readingMore}) {
       </Button>
       </CardActions>
      </Card>
+     
     }else{
       //className={`${this.props.classes.container} ${this.props.classes.spacious}`
-      return <Card>
-      <CardContent className={`${classes.bloggContent} `}>
-        <Typography gutterBottom variant="h5" component="div">
-        {blog.title} 
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-         {blog.content} 
-        <p className={classes.writerLabel}>{blog.writer}</p>
-        <p className={classes.dateDisplay}>{blog.date}</p>
+      return <div>
+          <Typography gutterBottom variant="h5" component="div">
+           {blog.title} 
+          </Typography>
+          <p> {blog.content} </p>
+          <h6>{blog.writer}</h6>
+          <h6>{blog.date}</h6>
+          <Button  value={blog.id} onClick={((e) => handleClick(e,blog))}  size="small">
+            Go Back
+          </Button>
+      </div>
       
-      </Typography>
-      </CardContent>
-      <CardActions>
-      <Button  value={blog.id} onClick={((e) => handleClick(e,blog))}  size="small">
-       Go Back
-      </Button>
-      </CardActions>
-     </Card>
     }
   }
   return (
