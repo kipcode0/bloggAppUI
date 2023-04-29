@@ -14,10 +14,14 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import { Padding } from '@mui/icons-material';
 
 const useStyles = makeStyles({
     bottomNav: {
-      position: "static",
+      position: "fixed",
+      height:"5vh",
+      width:"100%",
+      bottom: "0"
     },
   });
 
@@ -39,19 +43,8 @@ export default function BottomNav() {
         <BottomNavigationAction label="Andrew Kipkoech" icon={<CopyrightIcon />}  />
         <BottomNavigationAction href="https://www.linkedin.com/in/andrew-kipkoech-994459130/"label="LinkedIn" icon={< LinkedInIcon />} />
         <BottomNavigationAction href="https://twitter.com/AndrewKoechie"label="Twitter" icon={<TwitterIcon />} />
-        
-
+      
       </BottomNavigation>
     </Box>
-   /*
-    <Paper>
-      <BottomNavigation className={classes.bottomNav}>
-      <h5>&copy;Kipcode 2023</h5>
-       <p>Twitter</p>
-       <p>Linkedln</p>
-      </BottomNavigation>
-
-    </Paper>
-    */
   );
 }
