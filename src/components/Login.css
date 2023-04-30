@@ -1,0 +1,47 @@
+.Login {
+    text-align: center;
+  }
+.Form{
+   padding: auto;
+   margin: 2rem;
+}
+.header{
+    font: 2.5em roboto;
+    opacity: 0.2rem;
+    color:rgb(50, 50, 57)
+}
+.userNameInput{
+  padding: 12px 20px;
+  margin: 10px;
+  width: 50%;
+  font-size: 1rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.labelBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: roboto, Helvetica, sans-serif;
+    
+}
+.passWordInput{
+  padding: 12px 20px;
+  width: 50%;
+  margin: 6px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.loginButton{
+ background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
