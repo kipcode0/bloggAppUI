@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
-import {Route} from "react-router-dom"
 import { letterSpacing } from '@mui/system';
+import {Route,Routes,NavLink} from "react-router-dom"
 
 const useStyles = makeStyles({
     bloggContent: {
@@ -110,9 +110,11 @@ export default function Blog({blog,onReadMore,readingMore}) {
           <p> {blog.content} </p>
           <h6>{blog.writer}</h6>
           <h6>{blog.date}</h6>
-          <Button  value={blog.id} onClick={((e) => handleClick(e,blog))}  size="small">
-            Go Back
-          </Button>
+          <NavLink to='/'>
+            <Button  value={blog.id} /*onClick={((e) => handleClick(e,blog))} */ size="small">
+              Go Back
+            </Button>
+          </NavLink>
       </div>
       
     }

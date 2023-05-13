@@ -16,7 +16,7 @@ export default function Home() {
           paddingLeft: "10px",
           paddingRight: "10px",
           paddingTop: "5px",
-          paddingBottom:"10px",
+          paddingBottom:"55px",
           height: "90vh",
           overflow: "scroll"
         },

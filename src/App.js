@@ -10,6 +10,8 @@ import {BrowserRouter,Switch, Link,Route,Routes} from "react-router-dom"
 import { useEffect, useState } from 'react';
 import { AppBar } from '@mui/material';
 import Login from './components/Login'
+import Signup from './components/Signup'
+
 import Home from './Home'
 
 
@@ -18,6 +20,7 @@ function App() {
     <Routes>
       <Route exact path='/' element={<Home/>}/>
       <Route exact path="/login" element={<Login/>}/>
+      <Route exact path="/signup" element={<Signup/>}/>
     </Routes>
     
   );
