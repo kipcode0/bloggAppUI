@@ -4,6 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {Paper} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
 import { letterSpacing } from '@mui/system';
@@ -11,8 +12,27 @@ import {Route,Routes,NavLink} from "react-router-dom"
 
 const useStyles = makeStyles({
     bloggContent: {
+      //DON'T MODIFY
         position: "relative",
        
+    },
+    bloggerContentRead:{
+      padding:"10px",
+      fontFamily:"Roboto",
+      fontSize:"18px"
+    },
+    blogContentTitle:{
+      textAlign:"center",
+    },
+    blogContentWriter:{
+      paddingLeft:"10px",
+      fontFamily:"Roboto",
+      fontSize:"14px"
+    },
+    blogContentDate:{
+      paddingLeft:"10px",
+      fontFamily:"Roboto",
+      fontSize:"14px"
     },
     cardDisplay:{
       marginBottom: '50px',
@@ -29,6 +49,15 @@ const useStyles = makeStyles({
         fontSize: "0.8125rem",
         lineHeight: 1.75
 
+    },
+    responsiveBlogStyle:{
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      justifyContent:"center",
+      width:"100%",
+      height:"100%",
+      
     },
     readMore:{
       position: "relative",
@@ -103,18 +132,20 @@ export default function Blog({blog,onReadMore,readingMore}) {
      
     }else{
       //className={`${this.props.classes.container} ${this.props.classes.spacious}`
-      return <div>
-          <Typography gutterBottom variant="h5" component="div">
-           {blog.title} 
-          </Typography>
-          <p> {blog.content} </p>
-          <h6>{blog.writer}</h6>
-          <h6>{blog.date}</h6>
+      const btnStyling={paddingLeft :"10px",paddingBottom:"10px"}
+      let contentSliced = blog.content.split('\n\n')
+      return <div className={classes.responsiveBlogStyle}>
+         <Paper>
+           <h2 className={classes.blogContentTitle}>{blog.title}</h2>
+          <p className={classes.bloggerContentRead}> {contentSliced} </p>
+          <h6 className={classes.blogContentWriter}>{blog.writer}</h6>
+          <h6 className={classes.blogContentDate}>{blog.date}</h6>
           <NavLink to='/'>
-            <Button  value={blog.id} /*onClick={((e) => handleClick(e,blog))} */ size="small">
+            <Button style={btnStyling} value={blog.id} /*onClick={((e) => handleClick(e,blog))} */ size="small">
               Go Back
             </Button>
           </NavLink>
+          </Paper>
       </div>
       
     }
