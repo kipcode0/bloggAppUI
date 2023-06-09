@@ -45,6 +45,14 @@ const Login=()=>{
                   </NavLink>
                 </Typography>
 
+                <Typography > Write blog ?
+                  <NavLink to='/post'>
+                    <Button  size="small" variant="contained" style={btnstyle}>
+                     Post
+                   </Button>
+                  </NavLink>
+                </Typography>
+
 
             </Paper>
         </Grid>

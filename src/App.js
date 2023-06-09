@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { AppBar } from '@mui/material';
 import Login from './components/Login'
 import Signup from './components/Signup'
+import TinyEditor from "./components/TinyEditor";
 
 
 import Home from './Home'
@@ -22,6 +23,7 @@ function App() {
       <Route exact path='/' element={<Home/>}/>
       <Route exact path="/login" element={<Login/>}/>
       <Route exact path="/signup" element={<Signup/>}/>
+      <Route exact path="/post" element={<TinyEditor/>}/>
     </Routes>
     
   );

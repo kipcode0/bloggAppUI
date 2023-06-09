@@ -7,7 +7,6 @@ import Grid from '@mui/material/Grid';
 import {Route,Routes} from "react-router-dom"
 import { useEffect, useState } from 'react';
 import {makeStyles} from '@material-ui/core/styles'
-
   
 export default function Home() {
 
