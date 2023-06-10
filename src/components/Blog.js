@@ -92,7 +92,8 @@ const useStyles = makeStyles({
   });
 
   
-export default function Blog({blog,onReadMore,readingMore}) {
+export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
+ 
   const [readMore,setReadMore] = useState(false);
   
   useEffect(() => {
@@ -103,8 +104,6 @@ export default function Blog({blog,onReadMore,readingMore}) {
     setReadMore(prev => !prev);
   }
   const handleClick = (e,data) => {
-    console.log(readMore);
-    console.log(data);
     onReadMore(readMore,data);
   }
   
