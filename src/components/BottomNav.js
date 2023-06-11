@@ -21,7 +21,7 @@ const useStyles = makeStyles({
       position: "fixed",
       height:"5vh",
       width:"100%",
-      bottom: "0"
+      bottom: "0",
     },
   });
 

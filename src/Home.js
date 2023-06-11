@@ -40,9 +40,9 @@ export default function Home() {
           paddingLeft: "10px",
           paddingRight: "10px",
           paddingTop: "5px",
-          paddingBottom:"55px",
-          height: "90vh",
-          overflow: "scroll"
+          paddingBottom:"20px",
+          height: "87vh",
+          overflow: "auto"
         },
       });
 
@@ -84,13 +84,13 @@ export default function Home() {
        
      }
      
-     {readMoreBlogContent===false && <Grid item xs={12} sm={12} md={12}>
+     {readMoreBlogContent===false && <div   className={classes.paginate}>
          <Pagination 
          postsPerPage={postsPerPage} 
          totalPages={data.length}
          currentPage={currentPage} 
          paginate={paginate}/>
-      </Grid>}
+      </div>}
      
      {readMoreBlogContent===true && <Grid item xs={12} sm={12} md={12}>
          <Blog key={idd} blog={blogToRead} readingMore={readMoreBlogContent}/>
