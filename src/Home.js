@@ -40,7 +40,7 @@ export default function Home() {
           paddingLeft: "10px",
           paddingRight: "10px",
           paddingTop: "5px",
-          paddingBottom:"20px",
+          paddingBottom:"50px",
           height: "87vh",
           overflow: "auto"
         },

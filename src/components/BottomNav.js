@@ -40,7 +40,7 @@ export default function BottomNav() {
         }}
       >
         <BottomNavigationAction label="Refresh" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Andrew Kipkoech" icon={<CopyrightIcon />}  />
+        <BottomNavigationAction label="InscriberPost 2023" icon={<CopyrightIcon />}  />
         <BottomNavigationAction href="https://www.linkedin.com/in/andrew-kipkoech-994459130/"label="LinkedIn" icon={< LinkedInIcon />} />
         <BottomNavigationAction href="https://twitter.com/AndrewKoechie"label="Twitter" icon={<TwitterIcon />} />
       

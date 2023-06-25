@@ -112,7 +112,7 @@ export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
     if(readingMore===false){
       return <Card>
       <CardContent className={classes.bloggContent}>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
         {blog.title} 
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -139,7 +139,7 @@ export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
           <p className={classes.bloggerContentRead}> {contentSliced} </p>
           <h6 className={classes.blogContentWriter}>{blog.writer}</h6>
           <h6 className={classes.blogContentDate}>{blog.date}</h6>
-          <NavLink to='/'>
+          <NavLink to='..'>
             <Button style={btnStyling} value={blog.id} /*onClick={((e) => handleClick(e,blog))} */ size="small">
               Go Back
             </Button>
