@@ -10,7 +10,6 @@ import {BrowserRouter,Switch, Link,Route,Routes} from "react-router-dom"
 import { useEffect, useState } from 'react';
 import { AppBar } from '@mui/material';
 import Login from './components/Login';
-import SearchBlog from './components/SearchBlog';
 import Signup from './components/Signup';
 import TinyEditor from "./components/TinyEditor";
 
@@ -25,7 +24,6 @@ function App() {
       <Route exact path="/login" element={<Login/>}/>
       <Route exact path="/signup" element={<Signup/>}/>
       <Route exact path="/post" element={<TinyEditor/>}/>
-      <Route exact path="/search" element={<SearchBlog/>}/>
     </Routes>
     
   );

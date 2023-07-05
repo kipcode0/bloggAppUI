@@ -2,7 +2,8 @@ import React from "react";
 import Blog from './components/Blog';
 //import axios from 'axios';
 import BottomNav from './components/BottomNav';
-import Appbar from './components/Appbar'
+//import Appbar from './components/Appbar'
+import AppbarV2 from "./components/AppbarV2";
 import data from './data.json'
 import Grid from '@mui/material/Grid';
 import {Route,Routes} from "react-router-dom"
@@ -37,10 +38,10 @@ export default function Home() {
    const paginate= (pageNumber) => setCurrentPage(pageNumber);
     const useStyles = makeStyles({
         gridContainer: {
-          paddingLeft: "10px",
-          paddingRight: "10px",
+          paddingLeft: "2px",
+          paddingRight: "2px",
           paddingTop: "5px",
-          paddingBottom:"50px",
+          paddingBottom:"10px",
           height: "87vh",
           overflow: "auto"
         },
@@ -64,7 +65,7 @@ export default function Home() {
    if(loading){
      return (
        <div>
-          <Appbar/>
+          <AppbarV2/>
           <h2>Loading...</h2>
           <BottomNav/>
        </div>
@@ -74,7 +75,7 @@ export default function Home() {
 
     return (
       <div>
-        <Appbar/>
+        <AppbarV2/>
         <Grid container spacing={0.5}  className={classes.gridContainer}>
       {readMoreBlogContent===false && currentBlogs.map((blog)=>{
          return <Grid item xs={12} sm={6} md={4}>
