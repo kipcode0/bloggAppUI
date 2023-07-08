@@ -10,6 +10,7 @@ import {Route,Routes} from "react-router-dom"
 import { useEffect, useState } from 'react';
 import {makeStyles} from '@material-ui/core/styles'
 import Pagination from './components/Pagination';
+import BlogDetails from "./components/BlogDetails";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -57,7 +58,7 @@ export default function Home() {
     setReadMore(readMore);
     setBlogToRead(data);
   }
-  
+  //<Blog key={blog.id} blog={blog} onReadMore={readMoreContent} readingMore={readMoreBlogContent} posts={posts} loading={loading}/>
  
   let activeBlog = data.find(blog => blog.id ===idd);
   
@@ -75,7 +76,6 @@ export default function Home() {
 
     return (
       <div>
-        <AppbarV2/>
         <Grid container spacing={0.5}  className={classes.gridContainer}>
       {readMoreBlogContent===false && currentBlogs.map((blog)=>{
          return <Grid item xs={12} sm={6} md={4}>

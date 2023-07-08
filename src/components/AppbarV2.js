@@ -15,6 +15,10 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Button from '@mui/material/Button';
+import {Route,Routes,NavLink} from "react-router-dom"
+//import Typography from '@mui/material/Typography';
+
 import'./AppbarV2.css';
 
 const Search = styled('div')(({ theme }) => ({
@@ -67,6 +71,9 @@ export default function AppbarV2() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleLogin = (e) => {
+    console.log("perform auth")
+  }
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -128,8 +135,9 @@ export default function AppbarV2() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+        <AccountCircle />
         </IconButton>
+
         <p>Profile</p>
       </MenuItem>
     </Menu>
@@ -184,6 +192,9 @@ export default function AppbarV2() {
               <MoreIcon />
             </IconButton>
           </Box>
+          <NavLink to='/login'>
+             <Button onClick={((e) => handleLogin(e))}color="inherit">Login</Button>
+           </NavLink>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

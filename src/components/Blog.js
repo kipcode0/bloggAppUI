@@ -8,7 +8,7 @@ import {Paper} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
 import { letterSpacing } from '@mui/system';
-import {Route,Routes,NavLink} from "react-router-dom"
+import {Route,Routes,NavLink,useNavigate} from "react-router-dom"
 
 const useStyles = makeStyles({
     bloggContent: {
@@ -17,12 +17,14 @@ const useStyles = makeStyles({
        
     },
     bloggerContentRead:{
-      padding:"10px",
+      paddingLeft: "3px",
+      paddingRight: "3PX",
       fontFamily:"Roboto",
       fontSize:"18px"
     },
     blogContentTitle:{
       textAlign:"center",
+      paddingTop:"20px"
     },
     blogContentWriter:{
       paddingLeft:"10px",
@@ -93,7 +95,7 @@ const useStyles = makeStyles({
 
   
 export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
- 
+  
   const [readMore,setReadMore] = useState(false);
   
   useEffect(() => {
@@ -105,8 +107,11 @@ export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
   }
   const handleClick = (e,data) => {
     onReadMore(readMore,data);
-  }
-  
+  } 
+  const navigate = useNavigate();
+  const goBack = () => {
+		navigate(-1);
+	}
   const classes = useStyles();
   function conditionalRenderBlog(){
     if(readingMore===false){
@@ -135,12 +140,12 @@ export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
       let contentSliced = blog.content.split('\n\n')
       return <div className={classes.responsiveBlogStyle}>
          <Paper>
-           <h2 className={classes.blogContentTitle}>{blog.title}</h2>
+           <h5 className={classes.blogContentTitle}>{blog.title}</h5>
           <p className={classes.bloggerContentRead}> {contentSliced} </p>
           <h6 className={classes.blogContentWriter}>{blog.writer}</h6>
           <h6 className={classes.blogContentDate}>{blog.date}</h6>
           <NavLink to='..'>
-            <Button style={btnStyling} value={blog.id} /*onClick={((e) => handleClick(e,blog))} */ size="small">
+            <Button style={btnStyling} value={blog.id} /*onClick={updateReadStatus()}*/  size="small">
               Go Back
             </Button>
           </NavLink>

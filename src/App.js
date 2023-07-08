@@ -6,27 +6,32 @@ import Grid from '@mui/material/Grid';
 import {makeStyles} from '@material-ui/core/styles'
 import BottomNav from './components/BottomNav';
 import data from './data.json'
-import {BrowserRouter,Switch, Link,Route,Routes} from "react-router-dom"
+import {createBrowserRouter,RouterProvider, Link,Route,Routes} from "react-router-dom"
 import { useEffect, useState } from 'react';
 import { AppBar } from '@mui/material';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import TinyEditor from "./components/TinyEditor";
-
-
 import Home from './Home'
-
+import AppbarV2 from './components/AppbarV2';
+import RootLayout from './components/RootLayout';
+import ErrorPage from './components/ErrorPage';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout/>,
+    errorElement: <ErrorPage/>,
+    children:[
+      {path: '/', element:<Home/>}
+    ]
+  },
+  {path: '/login', element:<Login/>},
+  {path: '/signup', element:<Signup/>},
+  {path: '/post', element:<TinyEditor/>}
+]);
 
 function App() {
-  return (
-    <Routes>
-      <Route exact path='/' element={<Home/>}/>
-      <Route exact path="/login" element={<Login/>}/>
-      <Route exact path="/signup" element={<Signup/>}/>
-      <Route exact path="/post" element={<TinyEditor/>}/>
-    </Routes>
-    
-  );
+  return <RouterProvider router={router}/>
 }
 
 export default App;
