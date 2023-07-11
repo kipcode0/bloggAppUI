@@ -8,7 +8,8 @@ import {Paper} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
 import { letterSpacing } from '@mui/system';
-import {Route,Routes,NavLink,useNavigate} from "react-router-dom"
+import {Route,Routes,NavLink,useNavigate,Link,useParams} from "react-router-dom"
+
 
 const useStyles = makeStyles({
     bloggContent: {
@@ -94,7 +95,7 @@ const useStyles = makeStyles({
   });
 
   
-export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
+export default function Blog({blog,onReadMore, posts, loading}) {
   
   const [readMore,setReadMore] = useState(false);
   
@@ -106,16 +107,18 @@ export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
     setReadMore(prev => !prev);
   }
   const handleClick = (e,data) => {
-    onReadMore(readMore,data);
+    onReadMore(data);
   } 
   const navigate = useNavigate();
   const goBack = () => {
 		navigate(-1);
 	}
   const classes = useStyles();
-  function conditionalRenderBlog(){
-    if(readingMore===false){
-      return <Card>
+  
+  
+  return (
+    <div>
+      <Card>
       <CardContent className={classes.bloggContent}>
         <Typography gutterBottom variant="h6" component="div">
         {blog.title} 
@@ -128,35 +131,11 @@ export default function Blog({blog,onReadMore,readingMore, posts, loading}) {
       </Typography>
       </CardContent>
       <CardActions>
-      <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">
-        Read More
-      </Button>
+      <NavLink to={`/blog/${blog.id}`}>
+      <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">Read More</Button>
+      </NavLink>
       </CardActions>
      </Card>
-     
-    }else{
-      //className={`${this.props.classes.container} ${this.props.classes.spacious}`
-      const btnStyling={paddingLeft :"10px",paddingBottom:"10px"}
-      let contentSliced = blog.content.split('\n\n')
-      return <div className={classes.responsiveBlogStyle}>
-         <Paper>
-           <h5 className={classes.blogContentTitle}>{blog.title}</h5>
-          <p className={classes.bloggerContentRead}> {contentSliced} </p>
-          <h6 className={classes.blogContentWriter}>{blog.writer}</h6>
-          <h6 className={classes.blogContentDate}>{blog.date}</h6>
-          <NavLink to='..'>
-            <Button style={btnStyling} value={blog.id} /*onClick={updateReadStatus()}*/  size="small">
-              Go Back
-            </Button>
-          </NavLink>
-          </Paper>
-      </div>
-      
-    }
-  }
-  return (
-    <div>
-      {conditionalRenderBlog()}
     </div>
     
   );

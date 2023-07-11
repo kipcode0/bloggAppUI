@@ -6,18 +6,26 @@ import BottomNav from './components/BottomNav';
 import AppbarV2 from "./components/AppbarV2";
 import data from './data.json'
 import Grid from '@mui/material/Grid';
-import {Route,Routes} from "react-router-dom"
 import { useEffect, useState } from 'react';
 import {makeStyles} from '@material-ui/core/styles'
 import Pagination from './components/Pagination';
 import BlogDetails from "./components/BlogDetails";
+import {Route,Routes,NavLink,useNavigate,useParams} from "react-router-dom";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
+  
 
+  const idd = 10;
+  //const bloggyToRead = data.find(blog=>blog.id===iddy);
+  
+  const display= true;
+  const [readMoreBlogContent, setReadMore] = useState(false);
+  const [blogToRead,setBlogToRead] = useState(null);
+ 
   //runs when the component mounts and when it updates(include [] to prevent infinite loop)
   useEffect(()=>{
     const fetchPosts = async () =>{
@@ -28,8 +36,9 @@ export default function Home() {
       setLoading(false);
     }
     fetchPosts();
-  },[]);
+  },[setBlogToRead]);
 
+  console.log("This is blog to read", blogToRead);
   //get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost-postsPerPage;
@@ -48,10 +57,7 @@ export default function Home() {
         },
       });
 
-  const idd = 10;
-  const display= true;
-  const [readMoreBlogContent, setReadMore] = useState(false);
-  const [blogToRead,setBlogToRead] = useState(null);
+  
   
   
   const readMoreContent = (readMore,data) =>{
@@ -79,7 +85,7 @@ export default function Home() {
         <Grid container spacing={0.5}  className={classes.gridContainer}>
       {readMoreBlogContent===false && currentBlogs.map((blog)=>{
          return <Grid item xs={12} sm={6} md={4}>
-              <Blog key={blog.id} blog={blog} onReadMore={readMoreContent} readingMore={readMoreBlogContent} posts={posts} loading={loading}/>
+              <Blog key={blog.id} blog={blog} onReadMore={setBlogToRead} posts={posts} loading={loading}/>
             </Grid>
        })
        
@@ -94,7 +100,7 @@ export default function Home() {
       </div>}
      
      {readMoreBlogContent===true && <Grid item xs={12} sm={12} md={12}>
-         <Blog key={idd} blog={blogToRead} readingMore={readMoreBlogContent}/>
+     <BlogDetails readMoreContent={readMoreBlogContent}/>
       </Grid>}
 
      </Grid>
