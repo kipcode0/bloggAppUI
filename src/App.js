@@ -17,6 +17,8 @@ import AppbarV2 from './components/AppbarV2';
 import RootLayout from './components/RootLayout';
 import ErrorPage from './components/ErrorPage';
 import BlogDetails from './components/BlogDetails';
+import WriteBlog from './components/WriteBlog';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -24,12 +26,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage/>,
     children:[
       {path: '/', element:<Home/>},
-      {path: '/blog/:blogId', element:<BlogDetails/>}
+      {path: '/blog/:blogId', element:<BlogDetails/>},
+      {path: '/post', element:<WriteBlog/>}
     ]
   },
   {path: '/login', element:<Login/>},
   {path: '/signup', element:<Signup/>},
-  {path: '/post', element:<TinyEditor/>}
+  
   
 ]);
 
