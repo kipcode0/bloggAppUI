@@ -17,7 +17,7 @@ import AppbarV2 from './components/AppbarV2';
 import RootLayout from './components/RootLayout';
 import ErrorPage from './components/ErrorPage';
 import BlogDetails from './components/BlogDetails';
-import WriteBlog from './components/WriteBlog';
+import WriteBlog, {action as newBlogAction}from './components/WriteBlog';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     children:[
       {path: '/', element:<Home/>},
       {path: '/blog/:blogId', element:<BlogDetails/>},
-      {path: '/post', element:<WriteBlog/>}
+      {path: '/post', element:<WriteBlog/>, action:newBlogAction}
     ]
   },
   {path: '/login', element:<Login/>},
