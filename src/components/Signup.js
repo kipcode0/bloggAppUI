@@ -29,7 +29,7 @@ const Signup=()=>{
                 <TextField  className={classes.inputField} label='Last Name' placeholder='Enter Last Name' type='text' variant="outlined" fullWidth required/>
                 <TextField className={classes.inputField} label='Email' placeholder='Enter Email' variant="outlined" type='email' fullWidth required/>
                 <TextField className={classes.inputField} label='Password' placeholder='Enter Password' variant="outlined" type='password' fullWidth required/>
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign up</Button>
             </Paper>
         </Grid>
     )

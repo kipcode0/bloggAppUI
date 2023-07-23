@@ -38,9 +38,16 @@ export async function action({request}){
     const blog = {
         title: data.get('title'),
         genre: "Test",
-        date: "2020-10-10T00:00:00.000+00:00",
+        date: getCurrentDate(),
         content: data.get('content'),
-        id: 1234,
+        
+    }
+    function getCurrentDate(){
+        const date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        return `${year}-${month}-${day}`;
     }
 
   const response = await fetch('http://localhost:8080/blogs/create-blog', {
@@ -51,7 +58,6 @@ export async function action({request}){
      body: JSON.stringify(blog)
    });
    if(!response.ok){
-    console.log(blog);
     throw json({message: 'Could not create blog'}, {status:500});
    }
 }

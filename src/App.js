@@ -16,7 +16,7 @@ import Home from './Home'
 import AppbarV2 from './components/AppbarV2';
 import RootLayout from './components/RootLayout';
 import ErrorPage from './components/ErrorPage';
-import BlogDetails from './components/BlogDetails';
+import BlogDetails,{loader as fetchBlogDetails}from './components/BlogDetails';
 import WriteBlog, {action as newBlogAction}from './components/WriteBlog';
 
 const router = createBrowserRouter([

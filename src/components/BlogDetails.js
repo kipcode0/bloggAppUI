@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from "axios"
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -93,44 +94,73 @@ const useStyles = makeStyles({
     }
 
   });
-
  
-export default function BlogDetails({readMoreContent}) {
-   // const [blog, setBlogg] = useState(null);
-    const params = useParams();
-    const iddy = params.blogId;
-    useEffect(() => {
-        
-        
-       // setBlogg(blog);
-      },[]);
-      console.log("iddy from blog details", typeof(iddy));
-      const blog = data.find(blog=>blog.id===iddy);
-      console.log(" blog details", blog);
-    
-    /*
-    if(typeof iddy !== "undefined"){
-
-    }
-*/
-
+export default function BlogDetails({key,readMoreContent}) {
+  const [blog,setBlog] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const params = useParams();
+  const id = Number(params.blogId);
+  const url = `http://localhost:8080/blogs/find-blog/${id}`;
+  //runs when the component mounts and when it updates(include [] to prevent infinite loop)
   /*
-  const [readMore,setReadMore] = useState(false);
-  
+  useEffect(()=>{
+    const fetchPosts = async () =>{
+      const res = await axios.get(url);
+      console.log("data from the endpoint",res)
+      //const res = data;
+      setBlog(res.data);
+    }
+    fetchPosts();
+  },[url]);
+  */
   useEffect(() => {
-    setReadMore(prev => !prev);
-  },[]);
-*/
+    const fetchData = async function () {
+      try {
+        setLoading(true);
+        const response = await axios.get(url);
+        if (response.status === 200) {
+          const { blog } = response.data;
+          setBlog(blog);
+        }
+      } catch (error) {
+        console.log("Holy Crash!!!!!")
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [url]);
+  console.log("Set value for blog",blog);
+  console.log("This is the props",key);
 
   const handleClick = (update) => {
     readMoreContent = update;
   } 
   const classes = useStyles();
-  
   return (
     
     <div className={classes.responsiveBlogStyle}>
-         <Paper>
+        <h2>Blog Details Page</h2>
+      </div>
+    
+  );
+  
+}
+/*
+export async function loader(request){
+  const params = request.params;
+  const id = Number(params.blogId);
+  const response = await fetch(`http://localhost:8080/blogs/find-blog/${id}`);
+  if(!response.ok){
+      console.log("Error Occured")
+  }else{
+    const resData = await response.json();
+    <BlogDetails data={resData}/>
+  }
+}
+*/
+/* 
+<Paper>
          <h5 className={classes.blogContentTitle}>{blog.title}</h5>
          <p className={classes.bloggerContentRead}> {blog.content} </p>
         <h6 className={classes.blogContentWriter}>{blog.writer}</h6>
@@ -141,13 +171,6 @@ export default function BlogDetails({readMoreContent}) {
             </Button>
           </NavLink>
           </Paper>
-      </div>
-    
-  );
-  
-}
-/* 
-
 
 
 */

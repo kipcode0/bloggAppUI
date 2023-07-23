@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Blog from './components/Blog';
 //import axios from 'axios';
 import BottomNav from './components/BottomNav';
@@ -30,19 +31,20 @@ export default function Home() {
   useEffect(()=>{
     const fetchPosts = async () =>{
       setLoading(true);
-      //const res = await axios.get('url');
-      const res = data;
-      setPosts(data);
+      const res = await axios.get('http://localhost:8080/blogs/all');
+      console.log("data from the endpoint",res)
+      //const res = data;
+      setPosts(res.data);
       setLoading(false);
     }
     fetchPosts();
   },[setBlogToRead]);
 
-  console.log("This is blog to read", blogToRead);
+ 
   //get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost-postsPerPage;
-  const currentBlogs = data.slice(indexOfFirstPost,indexOfLastPost);
+  const currentBlogs = posts.slice(indexOfFirstPost,indexOfLastPost);
 
    //change page
    const paginate= (pageNumber) => setCurrentPage(pageNumber);
@@ -98,12 +100,10 @@ export default function Home() {
          currentPage={currentPage} 
          paginate={paginate}/>
       </div>}
-     
-     {readMoreBlogContent===true && <Grid item xs={12} sm={12} md={12}>
-     <BlogDetails readMoreContent={readMoreBlogContent}/>
-      </Grid>}
-
      </Grid>
+     {readMoreBlogContent===true && <Grid item xs={12} sm={12} md={12}>
+     <BlogDetails key={8} readMoreContent={readMoreBlogContent}/>
+      </Grid>}
      <BottomNav/>
       </div>
     );

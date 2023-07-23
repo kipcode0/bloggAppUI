@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     },
   });
 
-const Login=()=>{
+const Login=({data})=>{
 
     const paperStyle={padding :20,height:'70vh',width:400, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
