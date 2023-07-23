@@ -103,11 +103,10 @@ export default function Blog({blog,onReadMore, posts, loading}) {
     setReadMore(prev => !prev);
   },[]);
 
-  const updateReadStatus = ()=>{
-    setReadMore(prev => !prev);
-  }
   const handleClick = (e,data) => {
-    onReadMore(data);
+    onReadMore(readMore,data);
+   // console.log("from child",data);
+    //console.log("from child readmore state",readMore);
   } 
   const navigate = useNavigate();
   const goBack = () => {
@@ -132,7 +131,7 @@ export default function Blog({blog,onReadMore, posts, loading}) {
       </CardContent>
       <CardActions>
       <NavLink to={`/blog/${blog.id}`}>
-      <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">Read More</Button>
+         <Button value={blog.id} onClick={((e) => handleClick(e, blog))}size="small">Read More</Button>
       </NavLink>
       </CardActions>
      </Card>
@@ -141,3 +140,7 @@ export default function Blog({blog,onReadMore, posts, loading}) {
   );
   
 }
+/* 
+
+
+*/

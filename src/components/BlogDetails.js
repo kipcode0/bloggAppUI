@@ -95,58 +95,35 @@ const useStyles = makeStyles({
 
   });
  
-export default function BlogDetails({key,readMoreContent}) {
-  const [blog,setBlog] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const params = useParams();
-  const id = Number(params.blogId);
-  const url = `http://localhost:8080/blogs/find-blog/${id}`;
-  //runs when the component mounts and when it updates(include [] to prevent infinite loop)
-  /*
+  const fetchData = [];
+  let blogDetailsAfterFecth = "";
+export default function BlogDetails({blog,readMoreContent}) {
+ /*
   useEffect(()=>{
-    const fetchPosts = async () =>{
-      const res = await axios.get(url);
-      console.log("data from the endpoint",res)
-      //const res = data;
-      setBlog(res.data);
-    }
-    fetchPosts();
-  },[url]);
+    console.log(fetchData[0]);
+  },[fetchData]);
   */
-  useEffect(() => {
-    const fetchData = async function () {
-      try {
-        setLoading(true);
-        const response = await axios.get(url);
-        if (response.status === 200) {
-          const { blog } = response.data;
-          setBlog(blog);
-        }
-      } catch (error) {
-        console.log("Holy Crash!!!!!")
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [url]);
-  console.log("Set value for blog",blog);
-  console.log("This is the props",key);
-
-  const handleClick = (update) => {
-    readMoreContent = update;
-  } 
-  const classes = useStyles();
-  return (
-    
-    <div className={classes.responsiveBlogStyle}>
-        <h2>Blog Details Page</h2>
-      </div>
-    
-  );
   
+  const classes = useStyles();
+  
+  return (
+    <div className={classes.responsiveBlogStyle}>
+        <Paper>
+         <h5 className={classes.blogContentTitle}>{fetchData[0].title}</h5>
+         <p className={classes.bloggerContentRead}> {fetchData[0].content} </p>
+        <h6 className={classes.blogContentWriter}>John Doe</h6>
+        <h6 className={classes.blogContentDate}>{fetchData[0].date}</h6>
+          <NavLink to='/'>
+            <Button  size="small">
+              Go Back
+            </Button>
+          </NavLink>
+          </Paper>
+    </div>
+  );
 }
-/*
+
+
 export async function loader(request){
   const params = request.params;
   const id = Number(params.blogId);
@@ -155,22 +132,52 @@ export async function loader(request){
       console.log("Error Occured")
   }else{
     const resData = await response.json();
-    <BlogDetails data={resData}/>
+    if(fetchData.length != 0){
+      fetchData.length = 0;
+    }
+    fetchData.push(resData);
+    
+    return resData;
   }
 }
-*/
+
 /* 
-<Paper>
-         <h5 className={classes.blogContentTitle}>{blog.title}</h5>
-         <p className={classes.bloggerContentRead}> {blog.content} </p>
-        <h6 className={classes.blogContentWriter}>{blog.writer}</h6>
-        <h6 className={classes.blogContentDate}>{blog.date}</h6>
-          <NavLink to='/'>
-            <Button  onClick={((e) => handleClick(false))} size="small">
-              Go Back
-            </Button>
-          </NavLink>
-          </Paper>
 
 
+//const [loading, setLoading] = useState(false);
+  /*
+  
+  const params = useParams();
+  const id = Number(params.blogId);
+  const url = `http://localhost:8080/blogs/find-blog/${id}`;
+  //runs when the component mounts and when it updates(include [] to prevent infinite loop)
+
+  useEffect(()=>{
+    fetchPosts();
+  },[url]);
+  const fetchPosts = async () =>{
+    const res = await axios.get(url)
+    .then((response)=>{
+      setBlog(response.data);
+    });
+    //console.log("data from the endpoint",res)
+    //const res = data;
+  }
+  /*
+  useEffect(()=>{
+    
+    const fetchPosts = async () =>{
+      setLoading(true);
+      const res = await axios.get(url);
+     // console.log("data from the endpoint",res)
+      //const res = data;
+      setBlog(res.data);
+      if(!blog){
+        setLoading(false);
+      }
+      
+    }
+    fetchPosts();
+  },[url]);
 */
+  //console.log("Set value for blog",blog);

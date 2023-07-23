@@ -7,7 +7,7 @@ import BottomNav from './components/BottomNav';
 import AppbarV2 from "./components/AppbarV2";
 import data from './data.json'
 import Grid from '@mui/material/Grid';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useRef } from 'react';
 import {makeStyles} from '@material-ui/core/styles'
 import Pagination from './components/Pagination';
 import BlogDetails from "./components/BlogDetails";
@@ -19,7 +19,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
   
-
+  
   const idd = 10;
   //const bloggyToRead = data.find(blog=>blog.id===iddy);
   
@@ -29,16 +29,24 @@ export default function Home() {
  
   //runs when the component mounts and when it updates(include [] to prevent infinite loop)
   useEffect(()=>{
+    let isMounted = true;
     const fetchPosts = async () =>{
       setLoading(true);
-      const res = await axios.get('http://localhost:8080/blogs/all');
-      console.log("data from the endpoint",res)
-      //const res = data;
-      setPosts(res.data);
-      setLoading(false);
+      await axios.get('http://localhost:8080/blogs/all')
+      .then((value)=>{
+        if(isMounted){
+          setPosts(value.data);
+          setLoading(false);
+        }
+      });
+     //cleanup
+     return () => {
+      isMounted = false;
+    }
+      
     }
     fetchPosts();
-  },[setBlogToRead]);
+  },[blogToRead]);
 
  
   //get current posts
@@ -61,11 +69,13 @@ export default function Home() {
 
   
   
-  
+    
   const readMoreContent = (readMore,data) =>{
     setReadMore(readMore);
     setBlogToRead(data);
+    
   }
+  
   //<Blog key={blog.id} blog={blog} onReadMore={readMoreContent} readingMore={readMoreBlogContent} posts={posts} loading={loading}/>
  
   let activeBlog = data.find(blog => blog.id ===idd);
@@ -87,7 +97,7 @@ export default function Home() {
         <Grid container spacing={0.5}  className={classes.gridContainer}>
       {readMoreBlogContent===false && currentBlogs.map((blog)=>{
          return <Grid item xs={12} sm={6} md={4}>
-              <Blog key={blog.id} blog={blog} onReadMore={setBlogToRead} posts={posts} loading={loading}/>
+              <Blog key={blog.id} blog={blog} onReadMore={readMoreContent} posts={posts} loading={loading}/>
             </Grid>
        })
        
@@ -100,10 +110,12 @@ export default function Home() {
          currentPage={currentPage} 
          paginate={paginate}/>
       </div>}
+
+      {readMoreBlogContent===true && <div item xs={12} sm={12} md={12}>
+     <BlogDetails key={blogToRead.id} blog={blogToRead} readMoreContent={readMoreBlogContent}/>
+      </div>}
+     
      </Grid>
-     {readMoreBlogContent===true && <Grid item xs={12} sm={12} md={12}>
-     <BlogDetails key={8} readMoreContent={readMoreBlogContent}/>
-      </Grid>}
      <BottomNav/>
       </div>
     );
@@ -111,3 +123,7 @@ export default function Home() {
    }
     
   }
+  /*
+   
+  
+  */
