@@ -3,7 +3,7 @@ import axios from "axios";
 import Blog from './components/Blog';
 //import axios from 'axios';
 import BottomNav from './components/BottomNav';
-//import Appbar from './components/Appbar'
+import Appbar from './components/Appbar'
 import AppbarV2 from "./components/AppbarV2";
 import data from './data.json'
 import Grid from '@mui/material/Grid';
@@ -94,6 +94,7 @@ export default function Home() {
 
     return (
       <div>
+        <AppbarV2/>
         <Grid container spacing={0.5}  className={classes.gridContainer}>
       {readMoreBlogContent===false && currentBlogs.map((blog)=>{
          return <Grid item xs={12} sm={6} md={4}>

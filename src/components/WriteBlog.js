@@ -60,5 +60,5 @@ export async function action({request}){
    if(!response.ok){
     throw json({message: 'Could not create blog'}, {status:500});
    }
-   
+   return response;
 }
