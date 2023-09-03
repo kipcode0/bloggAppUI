@@ -1,3 +1,103 @@
+import React, { useState } from 'react'
+import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import {makeStyles} from '@material-ui/core/styles';
+import {json,useNavigate} from "react-router-dom";
+import "./Login.css";
+
+const Login=()=>{
+  const  [email, setEmail] = useState("");
+  const  [password, setPassword] = useState("");
+  const navigate = useNavigate();
+ 
+  const handleLogin = async (event)=>{
+    event.preventDefault();
+    const userData = {
+        password: password,
+        email: email
+    }
+    //ADD INPUT VERIFICATION
+    
+    try{
+        let res = await fetch("http://localhost:8080/authenticate",{
+         method: "POST",
+         body: JSON.stringify(userData),
+         headers:{
+            'Content-Type': 'application/json'
+           }
+        })
+        
+        if(res.status === 422 || res.status === 401 || res.status === 403){
+           console.log("Something went wrong with auth")
+           return res;
+        }
+        if(!res.ok){
+          throw json({message: 'Could not authenticate user.'}, {status: 500});
+        }
+
+        if(res.ok){
+          const responseData = await res.json();
+          //const token = responseData.jwt;
+          window.localStorage.setItem("Token", responseData.jwt);
+          window.localStorage.setItem("firstName", responseData.firstName);
+          window.localStorage.setItem("LastName", responseData.lastName);
+        }
+        
+       
+        setEmail("");
+        setPassword("");
+        navigate(`/login`);
+    }catch(err){
+        console.log("Could not login",err);
+    }
+    
+  }
+
+  const emailInputChangeHandler = event =>{
+    setEmail(event.target.value);
+  }
+  const passwordInputChangeHandler= event =>{
+    setPassword(event.target.value);
+  }
+  
+    return(
+    <div className="login-container">
+    <div className="login-box">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div className="email form-group">
+          <input type="email" id="email" 
+          name="email" 
+          placeholder="EMAIL"
+          onChange={emailInputChangeHandler}
+          required
+          />
+        </div>
+        <div className="password form-group">
+          <input type="password" id="password" 
+          name="password" 
+          onChange={passwordInputChangeHandler}
+          placeholder="PASSWORD"
+          required
+          />
+         </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+        
+        
+    )
+}
+export default Login
+
+
+
+
+
+
+/*
 import React from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -60,3 +160,4 @@ const Login=({data})=>{
 }
 
 export default Login
+*/

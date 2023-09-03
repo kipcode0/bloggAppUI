@@ -1,47 +1,88 @@
-.Login {
-    text-align: center;
-  }
-.Form{
-   padding: auto;
-   margin: 2rem;
+.form-control{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 2px solid rgb(67, 67, 66);
+  padding: 20px;
+  margin-right: 30px;
 }
-.header{
-    font: 2.5em roboto;
-    opacity: 0.2rem;
-    color:rgb(50, 50, 57)
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.userNameInput{
-  padding: 12px 20px;
-  margin: 10px;
-  width: 50%;
-  font-size: 1rem;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 10%;
+  font-size: 200%;
+  text-shadow: 0 0 5px #cacaca; 
 }
-.labelBox{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-family: roboto, Helvetica, sans-serif;
-    
+
+p {
+  margin-top: 18px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 45px;
+  font-size: 70%;
+  text-shadow: 0 0 5px #cacaca; 
 }
-.passWordInput{
-  padding: 12px 20px;
-  width: 50%;
-  margin: 6px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+
+.form-group {
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
-.loginButton{
- background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 15px;
+  margin-top: 5px;
+  border-radius: 0.7em;
+  border: 2px solid #535353;
+}
+
+button {
+  display: block;
+  width: 100%;
+  min-height: 45px;
+  max-height: 50px;
+  margin-top: 30px;
+  background-color: #5d5d5d;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
   border: none;
+  border-radius: 1em;
   cursor: pointer;
-  width: 30%;
+  box-shadow: 0 0 5px #fff; 
+}
+
+.username {
+  margin-top: 2%;
+}
+
+.email {
+  margin-top: 2%;
+  margin-bottom: 6%;
+}
+
+.password {
+  margin-top: 6%;
+  margin-bottom: 2%;
+}
+.login-box {
+  width: 500px;
+  height: 25em;
+  padding: 20px;
+  border-radius: 1em;
 }

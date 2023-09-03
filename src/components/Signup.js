@@ -3,7 +3,7 @@ import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@materia
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {makeStyles} from '@material-ui/core/styles';
-import {json} from "react-router-dom";
+import {json,useNavigate} from "react-router-dom";
 import "./Signup.css";
 
 const Signup=()=>{
@@ -12,8 +12,9 @@ const Signup=()=>{
   const [lastName, setLastName] = useState("");
   const  [email, setEmail] = useState("");
   const  [password, setPassword] = useState("");
+  const navigate = useNavigate();
  
-  const handleSignUp =(event)=>{
+  const handleSignUp = async (event)=>{
     event.preventDefault();
     const userData = {
         firstName: firstName,
@@ -22,21 +23,31 @@ const Signup=()=>{
         email: email
     }
     //ADD INPUT VERIFICATION
-    createUserHandler(userData);
+    //createUserHandler(userData);
+    try{
+        let res = await fetch("http://localhost:8080/signup",{
+         method: "POST",
+         body: JSON.stringify(userData),
+         headers:{
+            'Content-Type': 'application/json'
+           }
+        })
+        console.log("USER CREATED");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        /* 
+         Implement notification for success full user creation
+         Implement success status
+        */
+        navigate(`/login`);
+    }catch(err){
+        console.log("USER COULD NOT BE CREATED",err);
+    }
     
   }
-  function createUserHandler(userData){
-    fetch('http://localhost:8080/blogs/signup',{
-        method: 'POST',
-        headers:{
-         'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    }).then(function(response){
-        console.log(response.json());
-    });
-    
-  }
+
   const firstNameInputChangeHandler = event =>{
     setFirstName(event.target.value);
   }
@@ -51,12 +62,11 @@ const Signup=()=>{
   }
   
     return(
-    <body>
     <div className="login-container">
-    <div class="login-box">
+    <div className="login-box">
       <h2>Create Account</h2>
       <form onSubmit={handleSignUp}>
-        <div class="firstName" className="form-group">
+        <div className="firstName form-group">
           <input type="text" id="firstName" 
           name="firstName" 
           placeholder="FIRST NAME"
@@ -64,7 +74,7 @@ const Signup=()=>{
           required
           />
         </div>
-        <div class="lastName" className="form-group">
+        <div className="lastName form-group">
           <input type="text" id="lastName" 
           name="lastName" 
           placeholder="LAST NAME"
@@ -72,7 +82,7 @@ const Signup=()=>{
           required
           />
         </div>
-        <div class="email" className="form-group">
+        <div className="email form-group">
           <input type="email" id="email" 
           name="email" 
           placeholder="EMAIL"
@@ -80,7 +90,7 @@ const Signup=()=>{
           required
           />
         </div>
-        <div class="password" className="form-group">
+        <div className="password form-group">
           <input type="password" id="password" 
           name="password" 
           onChange={passwordInputChangeHandler}
@@ -89,46 +99,14 @@ const Signup=()=>{
           />
          </div>
         <button type="submit">Submit</button>
-        <div class="signup">
+        <div className="signup">
           <p>Already Registered?</p>
         </div>
       </form>
     </div>
   </div>
         
-  </body>  
         
     )
 }
-
 export default Signup
-/* 
-<Grid>
-             <h2>Create Account</h2>
-            <form onSubmit={handleSignUp} className='form-control'>
-            <label htmlFor='firstName'>first name</label>
-            <input type="text" 
-                id="firstName" 
-                placeholder="first name"
-                required/>
-            <label htmlFor='lastName'>last name</label>
-            <input type="text"
-                id="LastName" 
-                placeholder="last name"
-                required/>
-            <label htmlFor='password'>password</label>
-            <input type="password" 
-                id="password"  
-                placeholder="password"
-                required/>
-            <label htmlFor='email'>email</label>
-            <input type="email" 
-                id="email" 
-                placeholder="email"
-                required/>
-            <input type="submit" value="signup" />
-            </form>
-        </Grid>
-
-
-*/

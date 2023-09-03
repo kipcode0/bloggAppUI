@@ -1,6 +1,6 @@
 import React from 'react'
 import {Form,json} from "react-router-dom";
-
+import { getAuthToken } from '../util/auth';
 import './WriteBlog.css'
 export default function WriteBlog() {
   return (
@@ -34,6 +34,7 @@ export default function WriteBlog() {
   )
 }
 export async function action({request}){
+    const token = getAuthToken();
     const data = await request.formData();
     const blog = {
         title: data.get('title'),
@@ -49,11 +50,12 @@ export async function action({request}){
         let year = date.getFullYear();
         return `${year}-${month}-${day}`;
     }
-
+    
   const response = await fetch('http://localhost:8080/blogs/create-blog', {
      method: 'POST',
      headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
      },
      body: JSON.stringify(blog)
    });
