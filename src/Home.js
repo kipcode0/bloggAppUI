@@ -12,6 +12,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import Pagination from './components/Pagination';
 import BlogDetails from "./components/BlogDetails";
 import {Route,Routes,NavLink,useNavigate,useParams} from "react-router-dom";
+import AppbarV3 from "./components/AppbarV3";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -94,7 +95,7 @@ export default function Home() {
 
     return (
       <div>
-        <AppbarV2/>
+        <AppbarV3/>
         <Grid container spacing={0.5}  className={classes.gridContainer}>
       {readMoreBlogContent===false && currentBlogs.map((blog)=>{
          return <Grid item xs={12} sm={6} md={4}>
@@ -107,7 +108,7 @@ export default function Home() {
      {readMoreBlogContent===false && <div   className={classes.paginate}>
          <Pagination 
          postsPerPage={postsPerPage} 
-         totalPages={data.length}
+         totalPages={posts.length}
          currentPage={currentPage} 
          paginate={paginate}/>
       </div>}

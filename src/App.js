@@ -14,6 +14,7 @@ import Signup from './components/Signup';
 import TinyEditor from "./components/TinyEditor";
 import Home from './Home'
 import AppbarV2 from './components/AppbarV2';
+import AppbarV3 from './components/AppbarV3';
 import RootLayout from './components/RootLayout';
 import ErrorPage from './components/ErrorPage';
 import BlogDetails,{loader as fetchBlogDetails}from './components/BlogDetails';

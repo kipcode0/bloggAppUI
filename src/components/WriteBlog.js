@@ -50,7 +50,7 @@ export async function action({request}){
         let year = date.getFullYear();
         return `${year}-${month}-${day}`;
     }
-    
+    console.log(token);
   const response = await fetch('http://localhost:8080/blogs/create-blog', {
      method: 'POST',
      headers:{
@@ -59,6 +59,7 @@ export async function action({request}){
      },
      body: JSON.stringify(blog)
    });
+   
    if(!response.ok){
     throw json({message: 'Could not create blog'}, {status:500});
    }

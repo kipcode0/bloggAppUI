@@ -1,4 +1,6 @@
 import * as React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios"
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -20,7 +22,7 @@ const useStyles = makeStyles({
     },
     bloggerContentRead:{
       paddingLeft: "3px",
-      paddingRight: "3PX",
+      paddingRight: "10px",
       fontFamily:"Roboto",
       fontSize:"18px"
     },
@@ -110,6 +112,7 @@ export default function BlogDetails({blog,readMoreContent}) {
     <div className={classes.responsiveBlogStyle}>
         <Paper>
          <h5 className={classes.blogContentTitle}>{fetchData[0].title}</h5>
+         <hr class="hr hr-blurry" />
          <p className={classes.bloggerContentRead}> {fetchData[0].content} </p>
         <h6 className={classes.blogContentWriter}>John Doe</h6>
         <h6 className={classes.blogContentDate}>{fetchData[0].date}</h6>

@@ -1,0 +1,14 @@
+.navbar-expand {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    background-color: rgb(190, 200, 221);
+    padding-bottom: 1.5px;
+    padding-top: 0px;
+}
+.dropdown-menu.show{
+    border-radius: 0.5px;
+}
+#basic-nav-dropdown{
+  padding-right: 3.0rem;
+}
+
