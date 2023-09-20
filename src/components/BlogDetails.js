@@ -68,7 +68,8 @@ const useStyles = makeStyles({
     readMore:{
       position: "relative",
       bottom: 10,
-      right: 0,
+      flex:"start",
+      left: 0,
     },
     dateDisplay:{
         position:"absolute",
@@ -117,7 +118,7 @@ export default function BlogDetails({blog,readMoreContent}) {
         <h6 className={classes.blogContentWriter}>John Doe</h6>
         <h6 className={classes.blogContentDate}>{fetchData[0].date}</h6>
           <NavLink to='/'>
-            <Button  size="small">
+            <Button  className={classes.readMore} size="small">
               Go Back
             </Button>
           </NavLink>

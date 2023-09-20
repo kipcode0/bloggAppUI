@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color:rgb(81, 80, 83);
+  background-color:rgb(208, 206, 212);
 }
 
 .App-header {
@@ -11,5 +11,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
 }
+
 
 

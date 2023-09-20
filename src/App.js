@@ -19,6 +19,7 @@ import RootLayout from './components/RootLayout';
 import ErrorPage from './components/ErrorPage';
 import BlogDetails,{loader as fetchBlogDetails}from './components/BlogDetails';
 import WriteBlog, {action as newBlogAction}from './components/WriteBlog';
+import MyBlogs from './components/MyBlogs';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   {path: '/login', element:<Login/>},
   {path: '/signup', element:<Signup/>},
   {path: '/blog/:blogId', element:<BlogDetails/>,loader:fetchBlogDetails},
+  {path: '/user/content', element:<MyBlogs/>},
   {path: '/post', element:<WriteBlog/>, action:newBlogAction}
 ]);
 
