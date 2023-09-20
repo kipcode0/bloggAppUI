@@ -9,9 +9,10 @@ export default function AppbarV3() {
   return (
     <div>
       <Navbar bg="blue" >
+      <input id="searchBox" type="text" placeholder="Search.."/>
           <Nav className="ml-auto">
             <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">Login</Nav.Link>
+            <Nav.Link href="/login">Login</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
             
               <NavDropdown.Item href="/user/content">My Account</NavDropdown.Item>

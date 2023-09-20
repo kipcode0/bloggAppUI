@@ -1,6 +1,6 @@
 .navbar-expand {
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding-bottom: 2px;
     padding-top: 2px;
     font-weight: 500;
@@ -14,6 +14,13 @@
 #basic-nav-dropdown{
   padding-right: 3.0rem;
   font-weight: 500;
-  
+}
+#searchBox{
+  border-radius: 0.25;
+  border: none;
+  font-weight: 600;
+  margin-left: 2px;
+  width: 300px;
+  height: 40px;
 }
 
