@@ -3,7 +3,7 @@ import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@materia
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {makeStyles} from '@material-ui/core/styles';
-import {json,useNavigate} from "react-router-dom";
+import {json,redirect,useNavigate} from "react-router-dom";
 import "./Login.css";
 
 const Login=()=>{
@@ -34,6 +34,7 @@ const Login=()=>{
         }
         if(!res.ok){
           throw json({message: 'Could not authenticate user.'}, {status: 500});
+          
         }
 
         if(res.ok){
@@ -42,17 +43,21 @@ const Login=()=>{
           window.localStorage.setItem("Token", responseData.jwt);
           window.localStorage.setItem("firstName", responseData.firstName);
           window.localStorage.setItem("LastName", responseData.lastName);
+          navigate(`/`);
         }
         
        
         setEmail("");
         setPassword("");
-        navigate(`/login`);
+        
     }catch(err){
         console.log("Could not login",err);
+        navigate(`/`);
     }
     
   }
+
+  
 
   const emailInputChangeHandler = event =>{
     setEmail(event.target.value);

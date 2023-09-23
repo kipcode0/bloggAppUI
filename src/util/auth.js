@@ -7,3 +7,6 @@ export function getUserFirstName(){
 export function getUserLastName(){
     return localStorage.getItem("LastName");
 }
+export function tokenLoader(){
+    return getAuthToken();
+}

@@ -21,6 +21,7 @@ import BlogDetails,{loader as fetchBlogDetails}from './components/BlogDetails';
 import WriteBlog, {action as newBlogAction}from './components/WriteBlog';
 import MyBlogs from './components/MyBlogs';
 import {action as logoutAction} from './components/Logout';
+import {tokenLoader} from "./util/auth";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,8 @@ const router = createBrowserRouter([
     element: <RootLayout/>,
     errorElement: <ErrorPage/>,
     path: '/', element:<Home/>,
+    id:'root',
+    loader: tokenLoader,
   },
   {path: '/login', element:<Login/>},
   {path: '/signup', element:<Signup/>},
