@@ -20,6 +20,7 @@ import ErrorPage from './components/ErrorPage';
 import BlogDetails,{loader as fetchBlogDetails}from './components/BlogDetails';
 import WriteBlog, {action as newBlogAction}from './components/WriteBlog';
 import MyBlogs from './components/MyBlogs';
+import {action as logoutAction} from './components/Logout';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,9 @@ const router = createBrowserRouter([
   {path: '/signup', element:<Signup/>},
   {path: '/blog/:blogId', element:<BlogDetails/>,loader:fetchBlogDetails},
   {path: '/user/content', element:<MyBlogs/>},
-  {path: '/post', element:<WriteBlog/>, action:newBlogAction}
+  {path: '/post', element:<WriteBlog/>, action:newBlogAction},
+  
+
 ]);
 
 function App() {

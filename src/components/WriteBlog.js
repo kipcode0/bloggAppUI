@@ -3,7 +3,13 @@ import {Form,json} from "react-router-dom";
 import { getAuthToken } from '../util/auth';
 import './WriteBlog.css'
 export default function WriteBlog() {
-  return (
+  
+  //const inputRef = useRef(null);
+  const cancelUpdate=()=>{
+      alert("You will lose your changes!");
+  }
+  
+  return ( 
     <div>
       <Form  method='post'>
          <section className='mainBlog'>
@@ -24,8 +30,10 @@ export default function WriteBlog() {
             value="SAVE"/>
         <input 
             id="cancelBlogButton" 
-            type="cancel" 
+            type="reset" 
             name="cancelInfo" 
+            defaultValue="Reset"
+            onClick={()=>cancelUpdate()}
             value="CANCEL"/>
         </section>
       </Form>
@@ -50,6 +58,11 @@ export async function action({request}){
         let year = date.getFullYear();
         return `${year}-${month}-${day}`;
     }
+    function blogWriter(){
+      const firstName = localStorage.getItem("firstName");
+      const lastName = localStorage.get("LastName");
+      return `${firstName} ${lastName}`;
+  }
     console.log(token);
   const response = await fetch('http://localhost:8080/blogs/create-blog', {
      method: 'POST',
