@@ -18,6 +18,6 @@ export default function Pagination({postsPerPage, totalPages,currentPage,paginat
             ))}
         </ul>
     </nav>
-     
+            
   );
 }

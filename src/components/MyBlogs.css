@@ -1,0 +1,17 @@
+.blogContainer{
+    position: relative;
+}
+.btnEdit{
+    position: relative;
+    margin:20px;
+    width: 200px;
+    right:0px;
+    
+}
+.btnDelete{
+    position: relative;
+    margin:20px;
+    width: 200px;
+    right:0px;
+    
+}

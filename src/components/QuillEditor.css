@@ -1,0 +1,52 @@
+/* QuillStyles.module.css */
+@import '~quill/dist/quill.snow.css';
+.quill-container {
+    position: relative;
+  }
+  
+  .quill-editor {
+    height: 500px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    height: 80vh;
+    /* Other styles as needed */
+  }
+  
+  .edit-buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    padding: 5px;
+    gap: 15px;
+  }
+  
+  .edit-icon {
+    position: fixed;
+    left: 2%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    padding: 10px; /* Adjust the padding for space around the icon */
+  }
+  
+  .edit-icon i {
+    font-size: 30px; /* Set the icon size */
+    color: #363535; /* Icon color */
+  }
+
+  .edit-buttons button {
+    width: 80px; /* Set the width of the buttons */
+    height: 30px; /* Set the height of the buttons */
+    background-color: grey; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .edit-buttons button:hover {
+    background-color: #37393a; /* Change the background color on hover */
+  }
+  
